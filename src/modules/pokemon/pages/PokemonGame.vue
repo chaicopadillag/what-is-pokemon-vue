@@ -34,7 +34,7 @@
         v-if="isShowPicture"
         class="text-4xl font-extrabold text-center mb-8 text-white drop-shadow-lg capitalize"
       >
-        Es {{ whatIsThePokemon.name }}
+        Es {{ whatIsThePokemon.name }}!
       </h1>
       <PokemonPicture :pokemon="whatIsThePokemon" :is-show-picture="isShowPicture" />
       <PokemonOptions
