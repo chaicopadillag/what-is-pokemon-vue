@@ -30,7 +30,7 @@ describe('<PokemonOptions />', () => {
       props: {
         isRevelation: false,
         pokemons,
-        selectedPokemon: 'bulbasaur',
+        selectedPokemon: '1',
       },
     })
 
@@ -48,7 +48,7 @@ describe('<PokemonOptions />', () => {
       props: {
         isRevelation: false,
         pokemons,
-        selectedPokemon: 'bulbasaur',
+        selectedPokemon: '1',
       },
     })
 
@@ -62,5 +62,44 @@ describe('<PokemonOptions />', () => {
     expect(wrapper.emitted('onPokemonSelect')[1]).toEqual([pokemons[1]])
     expect(wrapper.emitted('onPokemonSelect')[2]).toEqual([pokemons[2]])
     expect(wrapper.emitted('onPokemonSelect')[3]).toEqual([pokemons[3]])
+  })
+
+  it('Debe de bloquear todos los botones', async () => {
+    const wrapper = mount(PokemonOptions, {
+      props: {
+        isRevelation: true,
+        pokemons,
+        selectedPokemon: '',
+      },
+    })
+
+    const buttons = wrapper.findAll('button')
+
+    expect(buttons).toHaveLength(4)
+    buttons.forEach((button) => {
+      expect(Object.keys(button.attributes())).contains('disabled')
+    })
+  })
+
+  it('Debe de mostrar el pokemon seleccionado y si acerto', async () => {
+    const selectedPokemon = '2'
+    const wrapper = mount(PokemonOptions, {
+      props: {
+        isRevelation: true,
+        pokemons,
+        selectedPokemon,
+      },
+    })
+
+    const buttons = wrapper.findAll('button')
+    expect(buttons).toHaveLength(4)
+
+    buttons.forEach((button, index) => {
+      if (pokemons[index].id === selectedPokemon) {
+        expect(button.classes()).toContain('winner')
+      } else {
+        expect(button.classes()).toContain('loser')
+      }
+    })
   })
 })
