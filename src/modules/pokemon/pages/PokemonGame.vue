@@ -2,7 +2,7 @@
   <main
     class="h-screen bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center p-4"
   >
-    <button
+    <a
       class="fixed top-4 right-4 bg-yellow-400 hover:bg-yellow-500 text-gray-800 font-bold py-2 px-4 rounded-full shadow-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:ring-opacity-50 flex items-center"
     >
       <svg
@@ -16,7 +16,7 @@
         />
       </svg>
       {{ rating }}
-    </button>
+    </a>
     <div v-if="isLoading" class="w-full max-w-md">
       <h1 class="text-4xl font-extrabold text-center mb-8 text-white drop-shadow-lg">
         Cargando Pokémon...
